@@ -6,27 +6,40 @@ function replaceAt(string, index, replace) {
     return string.substring(0, index) + replace + string.substring(index + 1);
 }
 
-function logFrame(msg, framecharacter){
-    var margin = (80-msg.length)/2;
+function setEdge(string, width, framecharacter){
+    for(var i=0; i<width; i++){
+        string=replaceAt(string,i,framecharacter);
+        string=replaceAt(string,string.length-(i+1),framecharacter);
+    }
+    return string;
+}
+
+
+function logFrame(msg, width, framecharacter){
+    var margin = Math.round(Math.max((80-msg.length)/2,3+width));
     var line = '';
     var marginline = '';
     var borderline = '';
 
+    
     for (var i=0; i<msg.length+2*margin; i++) line+=framecharacter;
     for (var i=0; i<margin; i++) marginline+=' ';
-    for (var i=0; i<80; i++) borderline+=' ';
-    borderline=replaceAt(borderline,0,framecharacter);
-    borderline=replaceAt(borderline,79,framecharacter);
 
-    var msgline=replaceAt(marginline+msg+marginline,0,framecharacter).substring(0,79);
-    msgline=replaceAt(msgline,79,framecharacter);
+    
+    var msgline = setEdge((marginline+msg+marginline),width,framecharacter);
+    var fullwidth=Math.max(80,msgline.length);
 
-    console.log(line);
+    
+    for (var i=0; i<fullwidth; i++) borderline+=' ';
+    borderline=setEdge(borderline, width, framecharacter);
+
+
+    for (var i=0; i<width; i++) console.log(line);
     console.log(borderline);
     console.log(msgline);
     console.log(borderline);
-    console.log(line);
+    for (var i=0; i<width; i++) console.log(line);
     console.log(line.length,msgline.length);
 }
 
-logFrame(greeting('Happy Eastern'),'#');
+logFrame(greeting('Happy EasternHappy Eastaaaskdfljsdflksdfjlkjaaaeran'), 3, '#');
