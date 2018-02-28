@@ -1,4 +1,4 @@
-function greeting(s){
-    console.log('Good morning, ', s , '!');
+function greeting(msg,name){
+    console.log(msg +', ' + name + '!');
 }
-greeting('Sasha');
+greeting('Happy Eastern','Sasha');
