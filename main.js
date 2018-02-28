@@ -8,8 +8,8 @@ function replaceAt(string, index, replace) {
 
 function setEdge(string, width, framecharacter){
     for(var i=0; i<width; i++){
-        string=replaceAt(string,i,framecharacter);
-        string=replaceAt(string,string.length-(i+1),framecharacter);
+        string=replaceAt(string,i,framecharacter[i%framecharacter.length]);
+        string=replaceAt(string,string.length-(i+1),framecharacter[i%framecharacter.length]);
     }
     return string;
 }
@@ -22,7 +22,7 @@ function logFrame(msg, width, framecharacter){
     var borderline = '';
 
     
-    for (var i=0; i<msg.length+2*margin; i++) line+=framecharacter;
+    for (var i=0; i<msg.length+2*margin; i++) line+=framecharacter[i%framecharacter.length];
     for (var i=0; i<margin; i++) marginline+=' ';
 
     
@@ -42,4 +42,4 @@ function logFrame(msg, width, framecharacter){
     console.log(line.length,msgline.length);
 }
 
-logFrame(greeting('Happy EasternHappy Eastaaaskdfljsdflksdfjlkjaaaeran'), 3, '#');
+logFrame(greeting('Nagyon nagyon boldog szuletesnapot kivanok sok sok szeretettel', 'Sasha'), 5, ['*','~']);
