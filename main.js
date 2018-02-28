@@ -1,4 +1,4 @@
-function greeting(msg,name){
+function greeting(msg,name='my friend'){
     return (msg +', ' + name + '!');
 }
 
@@ -7,14 +7,16 @@ function logFrame(msg){
     var line = '';
     var marginline = '';
     
-    for (var i=0; i<msg.length+2*margin; i++) line+='-';
+    for (var i=0; i<msg.length+2*margin; i++) line+='*';
     for (var i=0; i<margin; i++) marginline+=' ';
     
     console.log();
     console.log(line);
+    console.log();
     console.log(marginline+msg+marginline);
+    console.log();
     console.log(line);
     console.log();
 }
 
-logFrame(greeting('Happy Eastern','Sasha'));
+logFrame(greeting('Happy Eastern'));
